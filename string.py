@@ -1,0 +1,13 @@
+s1 = ("i am learning python batch code 1212")
+s2 = ("i am learning python batch code 2313")
+print(s1)
+print(s1[10])
+print(s1[0:])
+print(s1[0:6])
+print(s1[::2])
+print(s1[::3])
+print(s1[5:10:2])
+print(s1+s2)
+print(s1*4)
+s1[0:6] = "i am"
+print(s1)

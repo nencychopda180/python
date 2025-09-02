@@ -1,0 +1,7 @@
+a= input("enter your name")
+print(a)
+b=int(input("enter your age"))
+print(f'you are "{b}" year old')
+print(f"you are '{b}' year old")
+print(f'you are {b} year old')
+print(type(b))
