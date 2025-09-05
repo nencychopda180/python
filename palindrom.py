@@ -1,4 +1,4 @@
-text=input("enter a string")
+text=input("enter a string: ")
 if text==text[::-1]:
     print("palindrome")
 else:
