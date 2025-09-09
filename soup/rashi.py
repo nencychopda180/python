@@ -23,7 +23,7 @@ def extract_text_between(url, start_marker, end_marker):
             html = driver.page_source
             driver.quit()
 
-        soup = BeautifulSoup(html, "html.parser")
+        soup = BeautifulSoup(html, "xml")
         text = soup.get_text(separator=" ").strip()
         if start_marker in text and end_marker in text:
             start = text.find(start_marker) + len(start_marker)

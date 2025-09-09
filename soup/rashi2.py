@@ -2,9 +2,9 @@ import requests
 from bs4 import BeautifulSoup
 from gtts import gTTS
 from playsound import playsound
-import os
 
 def extract_text_between(url, start_marker, end_marker):
+    # Try raw requests first
     try:
         resp = requests.get(url)
         resp.raise_for_status()
@@ -23,7 +23,8 @@ def extract_text_between(url, start_marker, end_marker):
             html = driver.page_source
             driver.quit()
 
-        soup = BeautifulSoup(html, "html.parser")  # Use "lxml" if installed
+        soup = BeautifulSoup(html, "html.parser")
+
         text = soup.get_text(separator=" ").strip()
         if start_marker in text and end_marker in text:
             start = text.find(start_marker) + len(start_marker)
@@ -31,61 +32,128 @@ def extract_text_between(url, start_marker, end_marker):
             return text[start:end].strip(" ·:-–")
     return None
 
-def get_rashi_kathan(rashi_number):
-    url = f"https://www.divyabhaskar.co.in/rashifal/{rashi_number}/today?ref=inbound_RHS"
-    print(f"Fetching Rashi #{rashi_number} from: {url}")
-    result = extract_text_between(url, "ચંદ્રરાશિ પ્રમાણે", "લકી નંબર")
-    if result:
+def get_rashi_kathan(rashino):
+    if rashino==1:
+        url = "https://www.divyabhaskar.co.in/rashifal/13/today/"
+        result = extract_text_between(url, "ચંદ્રરાશિ પ્રમાણે", "લકી નંબર")
+        #write text file named as kathan.txt
         with open("kathan.txt", "w", encoding="utf-8") as f:
             f.write(result)
         print("File saved as kathan.txt")
-        return result
-    else:
-        print("Could not extract content from the page.")
-        return None
+    elif rashino==2:
+        url = "https://www.divyabhaskar.co.in/rashifal/15/today/"
+        result = extract_text_between(url, "ચંદ્રરાશિ પ્રમાણે", "લકી નંબર")
+        #write text file named as kathan.txt
+        with open("kathan.txt", "w", encoding="utf-8") as f:
+            f.write(result)
+        print("File saved as kathan.txt")
+    elif rashino==3:
+        url = "https://www.divyabhaskar.co.in/rashifal/16/today/"
+        result = extract_text_between(url, "ચંદ્રરાશિ પ્રમાણે", "લકી નંબર")
+        #write text file named as kathan.txt
+        with open("kathan.txt", "w", encoding="utf-8") as f:
+            f.write(result)
+        print("File saved as kathan.txt")
+    elif rashino==4:
+        url = "https://www.divyabhaskar.co.in/rashifal/19/today/"
+        result = extract_text_between(url, "ચંદ્રરાશિ પ્રમાણે", "લકી નંબર")
+        #write text file named as kathan.txt
+        with open("kathan.txt", "w", encoding="utf-8") as f:
+            f.write(result)
+        print("File saved as kathan.txt")
+    elif rashino==5:
+        url = "https://www.divyabhaskar.co.in/rashifal/17/today/"
+        result = extract_text_between(url, "ચંદ્રરાશિ પ્રમાણે", "લકી નંબર")
+        #write text file named as kathan.txt
+        with open("kathan.txt", "w", encoding="utf-8") as f:
+            f.write(result)
+        print("File saved as kathan.txt")
+    elif rashino==6:
+        url = "https://www.divyabhaskar.co.in/rashifal/18/today/"
+        result = extract_text_between(url, "ચંદ્રરાશિ પ્રમાણે", "લકી નંબર")
+        #write text file named as kathan.txt
+        with open("kathan.txt", "w", encoding="utf-8") as f:
+            f.write(result)
+        print("File saved as kathan.txt")
+    elif rashino==7:
+        url = "https://www.divyabhaskar.co.in/rashifal/20/today/"
+        result = extract_text_between(url, "ચંદ્રરાશિ પ્રમાણે", "લકી નંબર")
+        #write text file named as kathan.txt
+        with open("kathan.txt", "w", encoding="utf-8") as f:
+            f.write(result)
+        print("File saved as kathan.txt")
+    elif rashino==8:
+        url = "https://www.divyabhaskar.co.in/rashifal/14/today/"
+        result = extract_text_between(url, "ચંદ્રરાશિ પ્રમાણે", "લકી નંબર")
+        #write text file named as kathan.txt
+        with open("kathan.txt", "w", encoding="utf-8") as f:
+            f.write(result)
+        print("File saved as kathan.txt")
+    elif rashino==9:
+        url = "https://www.divyabhaskar.co.in/rashifal/21/today/"
+        result = extract_text_between(url, "ચંદ્રરાશિ પ્રમાણે", "લકી નંબર")
+        #write text file named as kathan.txt
+        with open("kathan.txt", "w", encoding="utf-8") as f:
+            f.write(result)
+        print("File saved as kathan.txt")
+    elif rashino==10:
+        url = "https://www.divyabhaskar.co.in/rashifal/22/today/"
+        result = extract_text_between(url, "ચંદ્રરાશિ પ્રમાણે", "લકી નંબર")
+        #write text file named as kathan.txt
+        with open("kathan.txt", "w", encoding="utf-8") as f:
+            f.write(result)
+        print("File saved as kathan.txt")
+    elif rashino==11:
+        url = "https://www.divyabhaskar.co.in/rashifal/23/today/"
+        result = extract_text_between(url, "ચંદ્રરાશિ પ્રમાણે", "લકી નંબર")
+        #write text file named as kathan.txt
+        with open("kathan.txt", "w", encoding="utf-8") as f:
+            f.write(result)
+        print("File saved as kathan.txt")
+    elif rashino==12:
+        url = "https://www.divyabhaskar.co.in/rashifal/24/today/"
+        result = extract_text_between(url, "ચંદ્રરાશિ પ્રમાણે", "લકી નંબર")
+        #write text file named as kathan.txt
+        with open("kathan.txt", "w", encoding="utf-8") as f:
+            f.write(result)
+        print("File saved as kathan.txt")
 
-def text_to_speech_gujarati(text, output_file="output.mp3"):
+def text_to_speech_gujarati(text,output_file="output.mp3"):
     try:
+        # Create a gTTS object with Gujarati language
         tts = gTTS(text=text, lang='gu', slow=False)
+        
+        # Save the audio to a file
         tts.save(output_file)
         print(f"Audio saved to {output_file}")
+        
+        # Play the audio file
         playsound(output_file)
+        
+        # Optionally, remove the temporary file
         os.remove(output_file)
     except Exception as e:
         print(f"Error during text-to-speech: {str(e)}")
 
-# Mapping of Rashi numbers to names (optional, for user-friendly display)
-rashi_names = {
-    1: "મેષ",
-    2: "વૃષભ",
-    3: "મિથુન",
-    4: "કર્ક",
-    5: "સિંહ",
-    6: "કન્યા",
-    7: "તુલા",
-    8: "વૃશ્ચિક",
-    9: "ધન",
-    10: "મકર",
-    11: "કુંભ",
-    12: "મીન"
-}
+print("enter 1 for મેષ / Aries ")
+print("enter 2 for વૃષભ / Taurus ")
+print("enter 3 for મિથુન / Gemini ")
+print("enter 4 for કર્ક / Cancer ")
+print("enter 5 for સિંહ / Leo ")
+print("enter 6 for કન્યા / Virgo ")
+print("enter 7 for તુલા / Libra ")
+print("enter 8 for વૃશ્ચિક / Scorpio ")
+print("enter 9 for ધન / Sagittarius ")
+print("enter 10 for મકર / Capricorn ")
+print("enter 11 for કુંભ / Aquarius ")
+print("enter 12 for મીન / Pisces ")
+r = int(input("enter the number of your rashi : "))
 
-# MAIN PROGRAM
-try:
-    print("રાશિફળ માટે નંબર પસંદ કરો:")
-    for num, name in rashi_names.items():
-        print(f"{num}: {name}")
-
-    choice = int(input("\nતમારી રાશિ માટે નંબર દાખલ કરો (1 થી 12): ").strip())
-
-    if 1 <= choice <= 12:
-        print("મહેરબાની કરીને રાહ જુઓ... માહિતી મેળવી રહ્યા છીએ...")
-        result = get_rashi_kathan(choice)
-        if result:
-            print("\nમાહિતી મેળવાઈ ગઈ છે. હવે અવાજ ઉત્પન્ન કરી રહ્યા છીએ...")
-            text_to_speech_gujarati(result)
-    else:
-        print("માફ કરશો, કૃપા કરીને 1 થી 12 વચ્ચેનો નંબર દાખલ કરો.")
-
-except ValueError:
-    print("અમાન્ય દાખલ. કૃપા કરીને નંબર દાખલ કરો.")
+print("Extracting data please wait....")
+#step 1
+# //get text from https://www.divyabhaskar.co.in/rashifal/13/today?ref=inbound_RHS and store into file
+get_rashi_kathan(r)
+print("data extracted successfully \n generating sound....")
+with open("kathan.txt", "r", encoding="utf-8") as f:
+    data = f.read()
+text_to_speech_gujarati(data)
