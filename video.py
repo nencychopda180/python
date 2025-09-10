@@ -1,4 +1,4 @@
-import moviepy.editor as mp
+import moviepy as mp
 import os
 
 def convert_video_to_mp3(video_path, output_path=None):
