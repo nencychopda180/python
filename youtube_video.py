@@ -17,7 +17,7 @@ def download_and_convert(url, save_path=".", words_per_bullet=15, bullets_per_sl
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(url, download=True)
             video_file = ydl.prepare_filename(info)
-        print(f"✅ Download complete: {video_file}")
+        print(f"Download complete: {video_file}")
 
         # Step 2: Convert to MP3
         mp3_file = os.path.splitext(video_file)[0] + ".mp3"
@@ -29,7 +29,7 @@ def download_and_convert(url, save_path=".", words_per_bullet=15, bullets_per_sl
         print(f"🎵 MP3 saved: {mp3_file}")
 
         # Step 3: Transcribe audio
-        print("📝 Generating transcript... (this may take some time)")
+        print("Generating transcript... (this may take some time)")
         model = whisper.load_model("base", device="cpu")
         result = model.transcribe(mp3_file)
         transcript = result["text"].strip()
@@ -39,7 +39,7 @@ def download_and_convert(url, save_path=".", words_per_bullet=15, bullets_per_sl
         if output_choice in ["txt", "both"]:
             with open(txt_file, "w", encoding="utf-8") as f:
                 f.write(transcript)
-            print(f"📄 Transcript saved: {txt_file}")
+            print(f"Transcript saved: {txt_file}")
 
         # Step 5: PPTX Output
         pptx_file = os.path.splitext(video_file)[0] + ".pptx"
@@ -100,17 +100,17 @@ def download_and_convert(url, save_path=".", words_per_bullet=15, bullets_per_sl
                 slide_elm.insert(2, parse_xml(transition_xml))
 
             prs.save(pptx_file)
-            print(f"📊 PPTX created: {pptx_file}")
+            print(f"PPTX created: {pptx_file}")
 
             # Auto-open PPTX
             try:
                 os.startfile(pptx_file)  # Windows only
-                print("📂 Opening PPTX file...")
+                print("Opening PPTX file...")
             except Exception as open_err:
                 print(f"⚠ Could not auto-open PPTX: {open_err}")
 
     except Exception as e:
-        print(f"❌ Error: {str(e)}")
+        print(f"Error: {str(e)}")
 
 if __name__ == "__main__":
     url = input("Enter YouTube video URL: ")
