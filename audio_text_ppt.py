@@ -7,14 +7,14 @@ from pptx import Presentation
 
 warnings.filterwarnings("ignore", message="FP16 is not supported on CPU")
 
-def audio_to_text(audio_path, lines_per_slide=3):
+def audio_to_text(audio_path, max_chars_per_slide=400):
     try:
-        print("Generating transcript in original language... (this may take some time)")
+        print(" Generating transcript... (this may take some time)")
         model = whisper.load_model("base", device="cpu")
 
         # Transcribe audio
         result = model.transcribe(audio_path)
-        transcript = result["text"]
+        transcript = result["text"].strip()
 
         # Save transcript to TXT
         txt_file = os.path.splitext(audio_path)[0] + ".txt"
@@ -26,16 +26,14 @@ def audio_to_text(audio_path, lines_per_slide=3):
         pptx_file = os.path.splitext(audio_path)[0] + ".pptx"
         prs = Presentation()
 
-        # Split transcript into lines
-        lines = [line.strip() for line in transcript.split('\n') if line.strip()]
+        # Split transcript into chunks (max characters per slide)
+        chunks = [transcript[i:i+max_chars_per_slide] for i in range(0, len(transcript), max_chars_per_slide)]
 
-        # Group lines_per_slide lines into one slide
-        for i in range(0, len(lines), lines_per_slide):
+        for i, chunk in enumerate(chunks, start=1):
             slide_layout = prs.slide_layouts[1]  # Title & Content layout
             slide = prs.slides.add_slide(slide_layout)
-            slide.shapes.title.text = "Transcript"
-            slide_text = "\n".join(lines[i:i+lines_per_slide])
-            slide.placeholders[1].text = slide_text
+            slide.shapes.title.text = f"Transcript Part {i}"
+            slide.placeholders[1].text = chunk
 
         prs.save(pptx_file)
         print(f"PPTX created: {pptx_file}")
@@ -43,17 +41,14 @@ def audio_to_text(audio_path, lines_per_slide=3):
     except Exception as e:
         print(f"Error: {str(e)}")
 
-
 if __name__ == "__main__":
-    # Hide main Tk window
     Tk().withdraw()
-    # Ask user to select audio file
     audio_file = askopenfilename(
         title="Select an audio file",
         filetypes=[("Audio files", "*.mp3 *.wav *.m4a *.flac"), ("All files", "*.*")]
     )
 
     if audio_file:
-        audio_to_text(audio_file, lines_per_slide=3)
+        audio_to_text(audio_file, max_chars_per_slide=400)
     else:
         print("No file selected.")
