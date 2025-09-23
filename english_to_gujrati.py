@@ -3,7 +3,7 @@ from googletrans import Translator
 
 async def translate_text(text):
     translator = Translator()
-    result = await translator.translate(text, src='en', dest='hi')
+    result = await translator.translate(text, src='en', dest='gu')
     return result.text
 
 async def main():
